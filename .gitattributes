@@ -1,0 +1,6 @@
+.*            export-ignore
+*.md          export-ignore
+*.txt         export-ignore
+icon.*        export-ignore
+*.godot       export-ignore
+*.tres        export-ignore
