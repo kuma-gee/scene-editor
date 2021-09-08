@@ -9,18 +9,31 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "GraphEdit",
+"class": "SceneGraph",
+"language": "GDScript",
+"path": "res://addons/scene-editor/SceneGraph.gd"
+}, {
+"base": "GraphNode",
+"class": "SceneNode",
+"language": "GDScript",
+"path": "res://addons/scene-editor/SceneNode.gd"
+}, {
 "base": "Resource",
 "class": "SceneResource",
 "language": "GDScript",
 "path": "res://addons/scene-editor/SceneResource.gd"
 } ]
 _global_script_class_icons={
+"SceneGraph": "",
+"SceneNode": "",
 "SceneResource": ""
 }
 
 [application]
 
 config/name="Scene Editor"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

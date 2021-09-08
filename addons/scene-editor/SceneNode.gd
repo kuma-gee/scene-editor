@@ -1,5 +1,5 @@
 tool
-extends GraphNode
+class_name SceneNode extends GraphNode
 
 signal open_scene(path)
 
@@ -12,25 +12,56 @@ func _ready():
 	resource.connect("changed", self, "_update")
 	_update()
 
+
 func _on_SceneNode_resize_request(new_minsize):
 	rect_size = new_minsize
 
-func set_left_slot(slot: int, enabled: bool) -> void:
-	set_slot(slot,
-		enabled,
-		get_slot_type_left(slot),
-		get_slot_color_left(slot),
-		is_slot_enabled_right(slot),
-		get_slot_type_right(slot),
-		get_slot_color_right(slot))
 
-func set_name(name: String) -> void:
-	resource.name = name
+func set_main_node() -> void:
+	title = "Start"
+	show_close = false
+
+
+func is_main_node() -> bool:
+	return not show_close
+
+
+func get_scene_path() -> String:
+	return resource.scene.resource_path if resource.scene else null
+
+func get_scene_name() -> String:
+	var path = get_scene_path()
+	if path != null:
+		var splits = path.split("/")
+		if splits.size() > 0:
+			return splits[splits.size() - 1]
+	return ""
 
 func _update():
-	name_label.text = resource.name
+	name_label.text = get_scene_name()
 	open_button.disabled = resource.scene == null
 
 
 func _on_OpenScene_pressed():
 	emit_signal("open_scene", resource.scene.resource_path)
+
+
+func get_data() -> Dictionary:
+	var data = {
+		"scene": get_scene_path(),
+		"offset": offset,
+		"node_name": name,
+	}
+	
+	if is_main_node():
+		data["main"] = true
+	
+	return data
+
+func load_data(data: Dictionary) -> void:
+	name = data["node_name"]
+	resource.scene = load(data["scene"]) if data["scene"] else null
+	offset = data["offset"]
+	
+	if data.has("main") and data["main"]:
+		set_main_node()
