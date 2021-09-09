@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/NextScene.gd" type="Script" id=1]
+
+[node name="NextScene" type="HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="Button" parent="."]
+visible = false
+margin_right = 67.0
+margin_bottom = 20.0
+text = "Previous"
+
+[node name="Next" type="Button" parent="."]
+margin_right = 42.0
+margin_bottom = 20.0
+text = "Next"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Next" to="Next" method="_on_Next_pressed"]

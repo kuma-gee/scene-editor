@@ -45,17 +45,20 @@ func _update():
 func _on_OpenScene_pressed():
 	emit_signal("open_scene", resource.scene.resource_path)
 
-
-func get_data() -> Dictionary:
+func get_game_data() -> Dictionary:
 	var data = {
-		"scene": get_scene_path(),
-		"offset": offset,
-		"node_name": name,
+		"scene": get_scene_path()
 	}
 	
 	if is_main_node():
 		data["main"] = true
 	
+	return data
+
+func get_data() -> Dictionary:
+	var data = get_game_data()
+	data["offset"] = offset
+	data["node_name"] = name
 	return data
 
 func load_data(data: Dictionary) -> void:

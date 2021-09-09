@@ -9,22 +9,28 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "SceneData",
+"language": "GDScript",
+"path": "res://addons/scene-editor/SceneData.gd"
+}, {
 "base": "GraphEdit",
 "class": "SceneGraph",
 "language": "GDScript",
-"path": "res://addons/scene-editor/SceneGraph.gd"
+"path": "res://addons/scene-editor/editor/SceneGraph.gd"
 }, {
 "base": "GraphNode",
 "class": "SceneNode",
 "language": "GDScript",
-"path": "res://addons/scene-editor/SceneNode.gd"
+"path": "res://addons/scene-editor/editor/SceneNode.gd"
 }, {
 "base": "Resource",
 "class": "SceneResource",
 "language": "GDScript",
-"path": "res://addons/scene-editor/SceneResource.gd"
+"path": "res://addons/scene-editor/editor/SceneResource.gd"
 } ]
 _global_script_class_icons={
+"SceneData": "",
 "SceneGraph": "",
 "SceneNode": "",
 "SceneResource": ""
@@ -38,7 +44,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-SceneManager="*res://addons/scene-editor/SceneManager.gd"
+SceneManager="*res://addons/scene-editor/SceneManager.tscn"
 
 [editor_plugins]
 

@@ -1,7 +1,9 @@
 tool
 extends EditorPlugin
 
-const DOCK_SCENE = preload("res://addons/scene-editor/SceneEditor.tscn")
+const DOCK_SCENE = preload("res://addons/scene-editor/editor/SceneEditor.tscn")
+const SCENE_MANAGER = "res://addons/scene-editor/SceneManager.tscn"
+
 var dock
 
 func _ready():
@@ -19,7 +21,7 @@ func _enter_tree():
 	add_control_to_bottom_panel(dock, "Scene Editor")
 	
 	# TODO: only add if not existing
-	add_autoload_singleton("SceneManager", "res://addons/scene-editor/SceneManager.gd")
+	add_autoload_singleton("SceneManager", SCENE_MANAGER)
 
 func _exit_tree():
 	remove_control_from_bottom_panel(dock)

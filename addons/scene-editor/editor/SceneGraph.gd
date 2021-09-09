@@ -3,7 +3,7 @@ class_name SceneGraph extends GraphEdit
 
 signal open_scene(path)
 
-const SCENE_NODE = preload("res://addons/scene-editor/SceneNode.tscn")
+const SCENE_NODE = preload("res://addons/scene-editor/editor/SceneNode.tscn")
 
 func _ready():
 	connect("connection_request", self, "connect_node")
@@ -59,10 +59,10 @@ func get_data() -> Dictionary:
 		"connections": get_connection_list()
 	}
 
-func _get_node_data() -> Array:
+func _get_node_data(method = "get_data") -> Array:
 	var nodes = []
 	for node in get_children():
-		if node.has_method("get_data"):
+		if node.has_method(method):
 			nodes.append(node.get_data())
 	return nodes
 
