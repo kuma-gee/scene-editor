@@ -7,6 +7,7 @@
 [node name="SceneEditor" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 300 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -26,3 +27,7 @@ graph_path = NodePath("../SceneGraph")
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="node_selected" from="SceneGraph" to="." method="_on_SceneGraph_node_selected"]
 [connection signal="open_scene" from="SceneGraph" to="." method="_on_SceneGraph_open_scene"]
+[connection signal="resize_request" from="SceneGraph/Main Scene" to="SceneGraph/Main Scene" method="_on_SceneNode_resize_request"]
+[connection signal="resize_request" from="SceneGraph/Scene 4" to="SceneGraph/Scene 4" method="_on_SceneNode_resize_request"]
+[connection signal="resize_request" from="SceneGraph/Scene 2" to="SceneGraph/Scene 2" method="_on_SceneNode_resize_request"]
+[connection signal="resize_request" from="SceneGraph/Scene 3" to="SceneGraph/Scene 3" method="_on_SceneNode_resize_request"]

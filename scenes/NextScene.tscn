@@ -10,18 +10,17 @@ __meta__ = {
 }
 
 [node name="Prev" type="Button" parent="."]
-visible = false
 margin_right = 67.0
 margin_bottom = 20.0
 text = "Previous"
+script = ExtResource( 1 )
 
 [node name="Next" type="Button" parent="."]
-margin_right = 42.0
+margin_left = 71.0
+margin_right = 113.0
 margin_bottom = 20.0
 text = "Next"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="pressed" from="Next" to="Next" method="_on_Next_pressed"]

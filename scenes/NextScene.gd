@@ -1,6 +1,9 @@
 extends Button
 
-export var idx := 0
+export var scene := ""
+
+func _ready():
+	var _x = connect("pressed", self, "_on_Next_pressed")
 
 func _on_Next_pressed():
-	SceneManager.next_scene(idx)
+	SceneManager.change_scene(scene)
