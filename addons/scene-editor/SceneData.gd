@@ -1,6 +1,6 @@
 class_name SceneData extends Node
 
-const GAME_SAVE_FILE = "res://scene.data"
+const GAME_SAVE_FILE = "res://scene.dat"
 
 var _data := {}
 

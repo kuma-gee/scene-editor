@@ -1,11 +1,20 @@
 extends Node
 
+export var use_transition := true
+
 onready var scene_data := $SceneData
+onready var transition := $TransitionLayer/Transition
+
+var next_scene := ""
 
 func change_scene(scene_name: String = "") -> void:
 	var scene = _find_scene(scene_name)
 	if scene != "":
-		get_tree().change_scene(scene)
+		if use_transition:
+			next_scene = scene
+			_leave_scene_transition()
+		else:
+			get_tree().change_scene(scene)
 
 func _find_scene(name: String = "") -> String:
 	var scenes = scene_data.get_available_scenes()
@@ -18,3 +27,27 @@ func _find_scene(name: String = "") -> String:
 			return scene
 	
 	return scenes[0] if scenes.size() > 0 else ""
+
+
+func _leave_scene_transition() -> void:
+	transition.show()
+	transition.reverse = true
+	transition.start()
+
+func _enter_scene_transition() -> void:
+	transition.reverse = false
+	transition.start()
+
+func _is_enter_transition() -> bool:
+	return not transition.reverse
+
+func _on_Transition_finished():
+	# Finished enter transition
+	if _is_enter_transition():
+		transition.hide()
+
+	# Finished leave transition
+	if transition.reverse and next_scene != "":
+		get_tree().change_scene(next_scene)
+		next_scene = ""
+		_enter_scene_transition()
