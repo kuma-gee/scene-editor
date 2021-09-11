@@ -33,7 +33,7 @@ margin_right = 42.0
 margin_bottom = 20.0
 text = "Back"
 script = ExtResource( 1 )
-scene = "Main"
+back = true
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 46.0

@@ -33,4 +33,5 @@ margin_right = 42.0
 margin_bottom = 20.0
 text = "Back"
 script = ExtResource( 1 )
-scene = "Level 1"
+back = true
+scene = "Level 1-1"

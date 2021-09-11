@@ -55,15 +55,15 @@ func save_game_data():
 		
 		if not to_scene or not from_scene: continue
 		
-		add_scene_data(data, from_scene, to_scene)
-		add_scene_data(data, to_scene, from_scene)
+		add_scene_data(data, from_scene, {"scene": to_scene, "back": false})
+		add_scene_data(data, to_scene, {"scene": from_scene, "back": true})
 	
 	file.store_var(data)
 	file.close()
 
-func add_scene_data(data: Dictionary, scene: String, next_scene: String) -> void:
+func add_scene_data(data: Dictionary, scene: String, info: Dictionary) -> void:
 	if not data.has(scene):
 		data[scene] = []
 	
-	if not data[scene].has(next_scene):
-		data[scene].append(next_scene)
+	if not data[scene].has(info):
+		data[scene].append(info)
