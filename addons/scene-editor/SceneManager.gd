@@ -5,6 +5,7 @@ export var use_transition := true
 onready var scene_data := $SceneData
 onready var transition := $TransitionLayer/Transition
 
+var _data = {}
 var next_scene := ""
 
 func change_scene(scene_name: String = "", back := false) -> void:
@@ -51,3 +52,14 @@ func _on_Transition_finished():
 		get_tree().change_scene(next_scene)
 		next_scene = ""
 		_enter_scene_transition()
+
+
+func save_data(data) -> void:
+	var scene_name = scene_data.current_scene()
+	_data[scene_name] = data
+
+
+func load_data():
+	var scene_name = scene_data.current_scene()
+	if not _data.has(scene_name): return null
+	return _data[scene_name]

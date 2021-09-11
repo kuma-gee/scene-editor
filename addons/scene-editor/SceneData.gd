@@ -18,10 +18,10 @@ func _load_data() -> void:
 	file.close()
 
 func get_available_scenes() -> Array:
-	var current = _current_scene()
+	var current = current_scene()
 	if _data.has(current):
 		return _data[current]
 	return []
 
-func _current_scene() -> String:
+func current_scene() -> String:
 	return get_tree().current_scene.filename
