@@ -26,7 +26,7 @@ func _find_scene(name := "", back := false) -> String:
 		if scene["back"] == back and scene["scene"].ends_with(find_name):
 			return scene["scene"]
 	
-	return scenes[0] if scenes.size() > 0 else ""
+	return scenes[0]["scene"] if scenes.size() > 0 and scenes[0]["back"] == back else ""
 
 
 func _leave_scene_transition() -> void:

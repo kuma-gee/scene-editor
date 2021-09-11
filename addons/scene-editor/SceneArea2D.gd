@@ -3,6 +3,7 @@ extends Area2D
 signal entered()
 
 export var scene := ""
+export var back := false
 
 func _on_SceneArea2D_area_entered(area):
 	_change_scene()
@@ -14,4 +15,4 @@ func _on_SceneArea2D_body_entered(body):
 
 func _change_scene():
 	emit_signal("entered")
-	SceneManager.change_scene(scene)
+	SceneManager.change_scene(scene, back)
