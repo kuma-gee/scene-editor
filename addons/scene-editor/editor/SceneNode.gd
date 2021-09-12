@@ -47,7 +47,8 @@ func _on_OpenScene_pressed():
 
 func get_game_data() -> Dictionary:
 	var data = {
-		"scene": get_scene_path()
+		"scene": get_scene_path(),
+		"global": resource.global,
 	}
 	
 	if is_main_node():
@@ -65,6 +66,7 @@ func load_data(data: Dictionary) -> void:
 	name = data["node_name"]
 	resource.scene = load(data["scene"]) if data["scene"] else null
 	offset = data["offset"]
+	resource.global = data["global"]
 	
 	if data.has("main") and data["main"]:
 		set_main_node()

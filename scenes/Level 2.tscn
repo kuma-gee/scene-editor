@@ -10,19 +10,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 489.0
+margin_left = 467.0
 margin_top = 281.0
-margin_right = 535.0
+margin_right = 556.0
 margin_bottom = 319.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 46.0
+margin_right = 89.0
 margin_bottom = 14.0
 text = "Level 2"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 18.0
-margin_right = 46.0
+margin_right = 89.0
 margin_bottom = 38.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,5 +33,14 @@ margin_right = 42.0
 margin_bottom = 20.0
 text = "Back"
 script = ExtResource( 1 )
-back = true
+type = 0
 scene = "Level 1-1"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 46.0
+margin_right = 89.0
+margin_bottom = 20.0
+text = "Main"
+script = ExtResource( 1 )
+type = 2
+scene = "Main"

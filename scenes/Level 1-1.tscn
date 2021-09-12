@@ -37,7 +37,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-back = true
+type = 0
 
 [node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 46.0

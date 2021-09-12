@@ -10,10 +10,19 @@ func _ready():
 	connect("disconnection_request", self, "disconnect_node")
 
 func get_main_node() -> SceneNode:
-	for child in get_children():
-		if child is SceneNode and child.is_main_node():
+	for child in get_scene_nodes():
+		if child.is_main_node():
 			return child
 	return null
+
+
+func get_scene_nodes() -> Array:
+	var result = []
+	for child in get_children():
+		if child is SceneNode:
+			result.append(child)
+	
+	return result
 
 
 func add_main_node():

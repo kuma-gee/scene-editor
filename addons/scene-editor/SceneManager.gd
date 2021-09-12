@@ -8,27 +8,14 @@ onready var transition := $TransitionLayer/Transition
 var _data = {}
 var next_scene := ""
 
-func change_scene(scene_name: String = "", back := false) -> void:
-	var scene = _find_scene(scene_name, back)
+func change_scene(scene_name: String = "", type := SceneData.Type.FORWARD) -> void:
+	var scene = scene_data.find_scene(scene_name, type)
 	if scene != "":
 		if use_transition:
 			next_scene = scene
 			_leave_scene_transition()
 		else:
 			get_tree().change_scene(scene)
-
-func _find_scene(name := "", back := false) -> String:
-	var scenes = scene_data.get_available_scenes()
-	var find_name = name
-	if not find_name.ends_with(".tscn"):
-		find_name += ".tscn"
-	
-	for scene in scenes:
-		if scene["back"] == back and scene["scene"].ends_with(find_name):
-			return scene["scene"]
-	
-	return scenes[0]["scene"] if scenes.size() > 0 and scenes[0]["back"] == back else ""
-
 
 func _leave_scene_transition() -> void:
 	transition.show()

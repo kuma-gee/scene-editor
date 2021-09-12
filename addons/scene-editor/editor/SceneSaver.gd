@@ -53,17 +53,31 @@ func save_game_data():
 		var from_scene = from.get_scene_path()
 		var to_scene = to.get_scene_path()
 		
-		if not to_scene or not from_scene: continue
+		if not to_scene or not from_scene:
+			add_scene_data(data, to_scene)
+			add_scene_data(data, from_scene)
+			continue
 		
-		add_scene_data(data, from_scene, {"scene": to_scene, "back": false})
-		add_scene_data(data, to_scene, {"scene": from_scene, "back": true})
+		add_scene_data(data, from_scene, {"scene": to_scene, "type": SceneData.Type.FORWARD})
+		add_scene_data(data, to_scene, {"scene": from_scene, "type": SceneData.Type.BACK})
+	
+	var globals = []
+	for node in graph.get_scene_nodes():
+		var d = node.get_game_data()
+		if d.has("global") and d["global"]:
+			globals.append(d["scene"])
+	
+	for global in globals:
+		for scene in data:
+			if scene != global:
+				add_scene_data(data, scene, {"scene": global, "type": SceneData.Type.GLOBAL})
 	
 	file.store_var(data)
 	file.close()
 
-func add_scene_data(data: Dictionary, scene: String, info: Dictionary) -> void:
-	if not data.has(scene):
+func add_scene_data(data: Dictionary, scene: String, info: Dictionary = {}) -> void:
+	if scene != null and scene != "" and not data.has(scene):
 		data[scene] = []
 	
-	if not data[scene].has(info):
+	if info.keys().size() > 0 and not data[scene].has(info):
 		data[scene].append(info)
